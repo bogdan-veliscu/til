@@ -1,18 +1,20 @@
-connection = pika.BlockingConnection(pika.ConnectionParameters('docker.for.mac.localhost'))
-import pika
+import pika, json
+
+from main import Product, db
 
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('docker.for.mac.localhost'))
 channel = connection.channel()
 channel.queue_declare(queue='main')
 
+connection = pika.BlockingConnection(pika.ConnectionParameters('docker.for.mac.localhost'))
 
 def callback(ch, method, properties, body):
     print('Received in main:',body)
     data = json.loads(body)
 
     if properties.content_type == "product_created":
-        product.Product(id=data['id'], title=data['title'],image=data['image'])
+        product = Product(id=data['id'], title=data['title'],image=data['image'])
         db.session.add(product)
         db.session.commit()
 

@@ -83,7 +83,7 @@ DATABASES = {
         'NAME':  'mysql',
         'USER': 'root',
         'PASSWORD':'r0oth4rd3rp45S',
-        'HOST': 'db'
+        'HOST': 'admin_db'
     }
 }
 

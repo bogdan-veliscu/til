@@ -16,3 +16,5 @@ run-main:
 
 run-admin:
 	cd admin; docker-compose up --build
+run-all: 
+	make -j4 run-mq run-admin run-main

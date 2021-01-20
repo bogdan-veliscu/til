@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  backend:
+  main_backend:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,17 +9,17 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      - main_db
 
-  queue:
+  main_queue:
     build:
       context: .
       dockerfile: Dockerfile
     command: "python consumer.py"
     depends_on:
-      - db
+      - main_db
          
-  db:
+  main_db:
     image: mysql:5.7.22
     restart: always
     environment:
