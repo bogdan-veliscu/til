@@ -1,8 +1,8 @@
+connection = pika.BlockingConnection(pika.ConnectionParameters('docker.for.mac.localhost'))
 import pika
 
-params = pika.URLParameters('amqp:rabbitmq:5672')
 
-connection = pika.BlockingConnection(params)
+connection = pika.BlockingConnection(pika.ConnectionParameters('docker.for.mac.localhost'))
 channel = connection.channel()
 channel.queue_declare(queue='main')
 
