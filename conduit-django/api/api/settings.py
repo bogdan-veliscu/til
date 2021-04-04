@@ -25,7 +25,9 @@ SECRET_KEY = '3$r3w8krdqzfne1k5+1zxvchvq34vndmue66s&$t%vnip^bp4b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'codeswiftr.tplinkdns.com'
+]
 
 
 # Application definition

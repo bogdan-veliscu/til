@@ -10,21 +10,21 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  client:
-    container_name: conduit-client
-    build: 
-      context: ./client
-    volumes:
-      - ./client:/code
-    ports:
-      - "3030:3000"
-    depends_on:
-      - api
-    environment:
-      NODE_ENV:
-      REACT_APP_API_KEY:
-      REACT_APP_DJANGO_SITE_URL:
-      REACT_APP_DJANGO_API_ENDPOINT:
+  #client:
+    #container_name: conduit-client
+    #build: 
+      #context: ./client
+    #volumes:
+      #- ./client:/code
+    #ports:
+      #- "3030:3000"
+    #depends_on:
+      #- api
+    #environment:
+      #NODE_ENV:
+      #REACT_APP_API_KEY:
+      #REACT_APP_DJANGO_SITE_URL:
+      #REACT_APP_DJANGO_API_ENDPOINT:
 
   api:
     container_name: conduit-api
