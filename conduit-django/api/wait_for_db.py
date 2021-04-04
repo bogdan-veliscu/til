@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Utility script for checking if the PostgreSQL database is ready to use
+This utility script checks if the PostgreSQL database is ready for use.
 """
-
 import logging
 import sys
 from time import sleep, time
@@ -14,7 +13,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
 
-if __name__ == "main":
+
+if __name__ == "__main__":
     db_config = dj_database_url.config()
 
     config = {
@@ -33,8 +33,8 @@ if __name__ == "main":
             logger.info("DB ready! 🎉")
             conn.close()
             sys.exit()
-        except psycopg2.OperationError:
-            logger.info(f"DB not ready. Waiting for 1 second ..")
+        except psycopg2.OperationalError:
+            logger.info(f"DB not ready. Waiting for 1 second ...")
             sleep(1)
 
-    logger.error(f"Could not connect to the DB within {timeout} seconds.")
+    logger.error(f"Could not connect to DB within {timeout} seconds.")
