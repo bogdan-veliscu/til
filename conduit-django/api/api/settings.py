@@ -26,7 +26,8 @@ SECRET_KEY = '3$r3w8krdqzfne1k5+1zxvchvq34vndmue66s&$t%vnip^bp4b'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'codeswiftr.tplinkdns.com'
+    'codeswiftr.tplinkdns.com',
+    '192.168.0.200'
 ]
 
 
