@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     '192.168.0.200'
 ]
 
+AUTH_USER_MODEL = 'authentication.User'
 
 # Application definition
 
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'articles',
-    'authentification',
+    'authentication',
     'profiles',
     'core'
 ]
