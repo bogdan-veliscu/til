@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: HTTP API
+
+Globals:
+  Function:
+    Timeout: 5
+    Handler: app.lambdaHandler
+    Runtime: nodejs12.x
+
+Resources:
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties: 
+      UserAuth:
+        AuthorizationScopes:
+          - email
+          - openid
+          - profile
+        IdentitySource: "$request.header.Authorization"
+        JwtConfiguration:
+          issuer: !Sub https://cognito-idp.${AWS::Region}.amazonaws.com/${UserPoolId}
+          audioence:
+            - !Ref Audience
+      CorsConfiguration:
+        AllowMethods:
+          - GET
+        AllowOrigins:
+          - http://localhost:8080
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties: 
+            Path: /
+            Method: get
+  AdminLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Events:
+        RootGet:
+          Type: HttpApi
+          Properties:
+            Path: /admin
+            Method: get
+            ApiId: !Ref HttpApi
